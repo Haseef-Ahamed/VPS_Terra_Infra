@@ -11,7 +11,7 @@ terraform {
 }
 
 provider "docker" {
-  host = "unix:///var/run/docker.sock"  # Local Docker socket (since running on VPS)
+  host = "unix:///var/run/docker.sock"  # Local Docker socket on VPS
 }
 
 module "network" {
