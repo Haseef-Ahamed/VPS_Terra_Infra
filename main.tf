@@ -11,7 +11,7 @@ terraform {
 }
 
 provider "docker" {
-  host = "unix:///var/run/docker.sock"  # Local Docker socket on VPS
+  host = "unix:///var/run/docker.sock" # Local Docker socket on VPS
 }
 
 module "network" {
@@ -36,30 +36,4 @@ module "database" {
 
 resource "docker_image" "nginx" {
   name = "nginx:latest"
-}
-
-resource "docker_container" "lb" {
-  name  = "${var.env}-lb"
-  image = docker_image.nginx.name
-
-  networks_advanced {
-    name = module.network.public_net_id
-  }
-  networks_advanced {
-    name = module.network.private_net_id
-  }
-
-  ports {
-    internal = 80
-    external = 8082  # Free port on VPS
-  }
-
-  volumes {
-    type   = "bind"
-    source = "${path.module}/nginx.conf"
-    target = "/etc/nginx/nginx.conf"
-  }
-
-  cpu_count = 1
-  memory    = 256
 }

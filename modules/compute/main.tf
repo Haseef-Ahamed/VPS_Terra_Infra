@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0"
+    }
+  }
+}
+
 resource "docker_image" "app" {
   name = "httpd:latest"
 }
@@ -12,9 +21,8 @@ resource "docker_container" "app" {
   }
 
   ports {
-    internal = 80
+  internal = 80
+  external = 8081
   }
 
-  cpu_count = 1
-  memory    = 512
 }

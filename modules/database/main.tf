@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0"
+    }
+  }
+}
+
 resource "docker_image" "mysql" {
   name = "mysql:8.0"
 }
@@ -20,7 +29,4 @@ resource "docker_container" "db" {
     internal = 3306
     external = 3307  # Free port on VPS
   }
-
-  cpu_count = 1
-  memory    = 1024
 }
