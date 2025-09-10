@@ -1,4 +1,9 @@
 # Terraform Infrastructure Documentation on VPS Platform
+
+## User Credential of VPS
+> username : ssh terraform-user@194.164.151.129
+> Password : asd@12345
+
 ## 1.	Project Overview
 > * This project deploys a multi-container environment using Terraform and Docker on a VPS. The architecture includes:
 >>    * Load Balancer (LB): NGINX container to distribute traffic to backend app containers.
